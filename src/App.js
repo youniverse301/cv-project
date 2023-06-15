@@ -1,9 +1,13 @@
 
-
 function App() {
   return (
-    <div>
-      
+    <div className="container">
+      <div className="editContainer">
+
+      </div>
+      <div className="productContainer">
+
+      </div>
     </div>
   );
 }
