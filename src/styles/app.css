@@ -12,15 +12,20 @@ body {
 }
 
 .editContainer {
-    height: 100px;
+    height: 100%;
     min-width: 495px;
     width: 40vw;
-    background-color: red;
+    border: 2px solid #195C70;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .productContainer {
     height: 100vh;
     min-width: 495px;
     width: 40vw;
-    background-color: red;
+    border: 1px solid black;
+    border-radius: 3px;
 }

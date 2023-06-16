@@ -1,0 +1,17 @@
+#PersonalDetails, #WorkExperience {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    gap: 5px;
+
+}
+
+#PersonalDetails > input {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+#personalDesc {
+    display: flex;
+    height: 60px;
+}
