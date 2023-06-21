@@ -1,4 +1,4 @@
-#PersonalDetails, #WorkExperience {
+#PersonalDetails, #WorkExperience, #Education {
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -6,12 +6,28 @@
 
 }
 
-#PersonalDetails > input {
+#PersonalDetails > input, #WorkExperience > input, #Education > input {
     border: 1px solid black;
     border-radius: 3px;
+    padding: 7px;
+
+}
+
+#PersonalDetails > p, #WorkExperience > p, #Education > p {
+    margin: 0;
+    font-size: 1.3rem;
+    padding-bottom: 5px;
+    color: #777777;
 }
 
 #personalDesc {
     display: flex;
     height: 60px;
+    resize: none;
 }
+
+#personalDesc, #workDesc, #educationDesc {
+    resize: none;
+    padding: 7px;
+}
+

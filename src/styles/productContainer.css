@@ -1,0 +1,46 @@
+#productHeader {
+    display: flex;
+    padding: 50px;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+#leftHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#companyName {
+    
+}
+
+#rightHeader{
+    display: flex;
+    flex-direction: column;
+    justify-self: right;
+    align-items: flex-start;
+    height: 100%;
+    align-self: center;
+}
+
+#productTitle{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2.2rem;
+    color: #195C70;
+}
+
+#companyName {
+    color: #777777;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+#phone > p, #email > p, #location > p {
+    margin: 0;
+}
+
+#phone, #email, #location {
+    display: flex;
+}

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/app.css';
 import './styles/personalDetails.css';
+import './styles/productContainer.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
