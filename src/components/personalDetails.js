@@ -10,6 +10,7 @@ class PersonalDetails extends Component {
       email: "",
       location: "",
       description: "",
+      textareaHeight: "auto",
     };
   }
 
@@ -19,10 +20,19 @@ class PersonalDetails extends Component {
         [inputName]: event.target.value,
       },
       () => {
-        this.props.handleInputChange(this.state);
+        if (inputName === "description") {
+          this.updateTextareaHeight();
+        }
+        this.props.handleInputChange(this.state, "personalDetails");
       }
     );
   }
+
+  updateTextareaHeight = () => {
+    const textarea = this.textareaRef;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
 
   render() {
     return (
@@ -63,7 +73,9 @@ class PersonalDetails extends Component {
           placeholder="Description..."
           id="personalDesc"
           value={this.state.description}
+          style={{ height: this.state.textareaHeight }}
           onChange={(event) => this.handleInputChange(event, "description")}
+          ref={(ref) => (this.textareaRef = ref)}
         ></textarea>
       </form>
     );
@@ -71,9 +83,6 @@ class PersonalDetails extends Component {
 }
 
 
-
-   
 export {
     PersonalDetails,
-    
 }

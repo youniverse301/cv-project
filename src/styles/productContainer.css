@@ -1,8 +1,11 @@
 #productHeader {
-    display: flex;
+    display: grid;
+    grid-template-rows: 2;
+    grid-template-columns: 2;
     padding: 50px;
     height: fit-content;
     justify-content: space-between;
+    align-items: center;
 }
 
 #leftHeader {
@@ -11,17 +14,17 @@
     gap: 15px;
 }
 
-#companyName {
-    
-}
-
 #rightHeader{
+    grid-row-start: 1;
+    grid-column-start: 2;
     display: flex;
     flex-direction: column;
-    justify-self: right;
     align-items: flex-start;
+    justify-content: center;
+    justify-self: right;
     height: 100%;
-    align-self: center;
+    width: fit-content;
+    gap: 5px;
 }
 
 #productTitle{
@@ -43,4 +46,115 @@
 
 #phone, #email, #location {
     display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#phoneImg, #emailImg, #locationImg {
+    height: 16px;
+    width: 16px;
+}
+
+#bottomHeader {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100%;
+    padding-top: 15px;
+    border-bottom: 2px solid #80AEBA;
+}
+
+#productDescription {
+    grid-row-start: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: .8rem;
+    width: 100%;
+}
+
+#productWork {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto auto;
+    grid-template-rows: 3;
+    padding: 50px;
+    height: fit-content;
+    row-gap: 10px;
+}
+
+#workExperience {
+    margin: 0;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    color: #377DA3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+#workTitle, #eduUniversity {
+    margin: 0;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    justify-self: right;
+    color: #838383;
+    font-size: 0.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+}
+
+#workPosition, #eduCourse {
+    margin: 0;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    font-size: 0.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5E5E5E;
+}
+
+#workStart, #eduStart {
+    margin: 0;
+    grid-row-start: 2;
+    grid-column-start: 3;
+    justify-self: right;
+    padding-left: 5px;
+    font-size: 0.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5E5E5E;
+}
+
+#workEnd, #eduEnd {
+    margin: 0;
+    grid-row-start: 2;
+    grid-column-start: 4;
+    padding-left: 5px;
+    font-size: 0.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5E5E5E;
+
+}
+
+#workDescription, #eduDescription {
+    margin: 0;
+    grid-row-start: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    font-size: 0.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+}
+
+#productEducation {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto auto;
+    grid-template-rows: 3;
+    padding: 50px;
+    height: fit-content;
+    row-gap: 10px;
 }

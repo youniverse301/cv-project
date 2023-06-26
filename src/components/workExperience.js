@@ -8,7 +8,7 @@ class WorkExperience extends Component {
       position: "",
       startDate: "",
       endDate: "",
-      description: "",
+      workDescription: "",
     };
   }
 
@@ -18,16 +18,22 @@ class WorkExperience extends Component {
         [inputName]: event.target.value,
       },
       () => {
-        this.props.handleInputChange(this.state);
+        this.props.handleInputChange(this.state, "workExperience");
       }
     );
   }
 
+  handleClick(event) {
+    event.preventDefault();
+    console.log("sasd")
+  }
+  
+
   render() {
+    const isBottom = this.props.isBottom;
     return (
       <div>
         <form id="WorkExperience">
-          <p>Work Experience</p>
           <input
             type="text"
             placeholder="Company"
@@ -56,19 +62,17 @@ class WorkExperience extends Component {
             type="text"
             placeholder="Description..."
             id="workDesc"
-            value={this.state.description}
-            onChange={(event) => this.handleInputChange(event, "description")}
+            value={this.state.workdescription}
+            onChange={(event) => this.handleInputChange(event, "workDescription")}
           ></textarea>
           <div id="buttonContainer">
             <button id="deleteBtn">Delete</button>
-            <button id="addBtn">Add</button>
+            {isBottom && <button id="addBtn" onClick={this.handleClick}>Add</button>}
           </div>
         </form>
-        <div></div>
       </div>
     );
   }
 }
-  
 
-  export default WorkExperience;
+export default WorkExperience;

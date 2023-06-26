@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     padding: 25px;
+    padding-top: 25px;
     gap: 5px;
 
 }
@@ -10,24 +11,43 @@
     border: 1px solid black;
     border-radius: 3px;
     padding: 7px;
-
 }
 
-#PersonalDetails > p, #WorkExperience > p, #Education > p {
+#PersonalDetails > p, #Education > p {
     margin: 0;
     font-size: 1.3rem;
     padding-bottom: 5px;
     color: #777777;
 }
 
-#personalDesc {
-    display: flex;
-    height: 60px;
-    resize: none;
+#workHeader {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #777777;
+    padding-left: 25px;
 }
 
-#personalDesc, #workDesc, #educationDesc {
+#personalDesc {
+    display: flex;
+    padding: 7px;
+    overflow: hidden;
+    resize: none;
+    
+}
+
+#workDesc, #educationDesc {
     resize: none;
     padding: 7px;
+}
+
+#addBtn, #deleteBtn {
+    background: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
 }
 
