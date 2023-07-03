@@ -12,6 +12,16 @@
     border: 1px solid black;
     border-radius: 3px;
     padding: 7px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: .8rem;
+}
+
+#PersonalDetails > textarea, #WorkExperience > textarea, #Education > textarea {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 7px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: .8rem;
 }
 
 

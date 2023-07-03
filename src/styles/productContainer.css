@@ -190,9 +190,8 @@
     grid-column-start: 1;
     grid-column-end: 3;
     padding-top: 15px;
-    color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 #personalTitle {
