@@ -1,98 +1,160 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class FormLogic extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      personalDetails: [{
-        name: 'John Doe',
-        title: 'Software Engineer',
-        phone: '123-456-7890',
-        email: 'johndoe@gmail.com',
-        location: 'New York, NY',
-        personalDesc: 'Cupidatat sunt anim incididunt nisi labore sunt nulla Lorem elit irure. Aliquip quis excepteur et nostrud enim irure nostrud officia. Et deserunt et aliquip voluptate elit cupidatat. Adipisicing enim minim do anim eiusmod est. Irure laboris anim voluptate proident. Cillum reprehenderit est magna minim. Nostrud ex aute laborum ea irure amet ea ipsum ut non minim anim nisi.'
-      }],
-      workExperience: [{
-        company: 'ABC Corp',
-        position: 'Engineering Manager',
-        workStart: '2021',
-        workEnd: 'Present',
-        workDesc: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud.'
-      },
-      {
-        company: 'XYZ Inc',
-        position: 'Senior Software Engineer',
-        workStart: '2018',
-        workEnd: '2021',
-        workDesc: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.'
-      },
-      {
-        company: '123 Tech',
-        position: 'Full Stack Developer',
-        workStart: '2017',
-        workEnd: '2018',
-        workDesc: 'Enim elit aliquip fugiat anim proident.'
-      }],
-      education: [{
-        course: 'Bachelor of Science',
-        university: 'XYZ University',
-        eduStart: '2011',
-        eduEnd: '2015',
-        eduDesc: ''
-      },
-      {
-        course: 'Master of Business Administration',
-        university: 'ABC University',
-        eduStart: '2015',
-        eduEnd: '2017',
-        eduDesc: ''
-      }]
-    };
-  }  
+function FormLogic() {
+  const [personalDetails, setPersonalDetails] = useState([
+    {
+      name: 'John Doe',
+      title: 'Software Engineer',
+      phone: '123-456-7890',
+      email: 'johndoe@gmail.com',
+      location: 'New York, NY',
+      personalDesc: 'Cupidatat sunt anim incididunt nisi labore sunt nulla Lorem elit irure. Aliquip quis excepteur et nostrud enim irure nostrud officia. Et deserunt et aliquip voluptate elit cupidatat. Adipisicing enim minim do anim eiusmod est. Irure laboris anim voluptate proident. Cillum reprehenderit est magna minim. Nostrud ex aute laborum ea irure amet ea ipsum ut non minim anim nisi.'
+    }
+  ]);
+  const [workExperience, setWorkExperience] = useState([
+    {
+      company: 'ABC Corp',
+      position: 'Engineering Manager',
+      workStart: '2021',
+      workEnd: 'Present',
+      workDesc: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud.'
+    },
+    {
+      company: 'XYZ Inc',
+      position: 'Senior Software Engineer',
+      workStart: '2018',
+      workEnd: '2021',
+      workDesc: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.'
+    },
+    {
+      company: '123 Tech',
+      position: 'Full Stack Developer',
+      workStart: '2017',
+      workEnd: '2018',
+      workDesc: 'Enim elit aliquip fugiat anim proident.'
+    }
+  ]);
+  const [education, setEducation] = useState([
+    {
+      course: 'Bachelor of Science',
+      university: 'XYZ University',
+      eduStart: '2011',
+      eduEnd: '2015',
+      eduDesc: ''
+    },
+    {
+      course: 'Master of Business Administration',
+      university: 'ABC University',
+      eduStart: '2015',
+      eduEnd: '2017',
+      eduDesc: ''
+    }
+  ]);
 
-  handleChange = (e, index, type) => {
+  const handleChange = (e, index, type) => {
     const { name, value } = e.target;
-    const stateKey = type === 'personalDetails' ? 'personalDetails' : type;
-    const stateValue = [...this.state[stateKey]];
-    stateValue[index][name] = value;
-    this.setState({ [stateKey]: stateValue });
-  }
+    let updatedData;
+    if (type === 'personalDetails') {
+      updatedData = personalDetails.map((detail, i) => {
+        if (i === index) {
+          return { ...detail, [name]: value };
+        }
+        return detail;
+      });
+      setPersonalDetails(updatedData);
+    } else {
+      let stateKey;
+      let stateValue;
+      if (type === 'workExperience') {
+        stateKey = 'workExperience';
+        stateValue = workExperience;
+      } else if (type === 'education') {
+        stateKey = 'education';
+        stateValue = education;
+      }
 
-  addEntry = (type) => {
-    const stateKey = type === 'personalDetails' ? 'personalDetails' : type;
-    const stateValue = [...this.state[stateKey]];
-  
+      updatedData = stateValue.map((item, i) => {
+        if (i === index) {
+          return { ...item, [name]: value };
+        }
+        return item;
+      });
+
+      if (stateKey === 'workExperience') {
+        setWorkExperience(updatedData);
+      } else if (stateKey === 'education') {
+        setEducation(updatedData);
+      }
+    }
+  };
+
+  const addEntry = (type) => {
+    let stateKey;
+    let stateValue;
+    if (type === 'personalDetails') {
+      stateKey = 'personalDetails';
+      stateValue = personalDetails;
+    } else if (type === 'workExperience') {
+      stateKey = 'workExperience';
+      stateValue = workExperience;
+    } else if (type === 'education') {
+      stateKey = 'education';
+      stateValue = education;
+    }
+
     const emptyEntry = {};
     Object.keys(stateValue[0]).forEach(key => {
       emptyEntry[key] = '';
     });
-  
-    stateValue.push(emptyEntry);
-    this.setState({ [stateKey]: stateValue });
-  }
-  
 
-  deleteEntry = (index, type) => {
-    const stateKey = type === 'personalDetails' ? 'personalDetails' : type;
-    const stateValue = [...this.state[stateKey]];
-    stateValue.splice(index, 1);
-    this.setState({ [stateKey]: stateValue });
-  }
-  
-  componentDidMount() {
+    const updatedData = [...stateValue, emptyEntry];
+
+    if (stateKey === 'personalDetails') {
+      setPersonalDetails(updatedData);
+    } else if (stateKey === 'workExperience') {
+      setWorkExperience(updatedData);
+    } else if (stateKey === 'education') {
+      setEducation(updatedData);
+    }
+  };
+
+  const deleteEntry = (index, type) => {
+    let stateKey;
+    let stateValue;
+    if (type === 'personalDetails') {
+      stateKey = 'personalDetails';
+      stateValue = personalDetails;
+    } else if (type === 'workExperience') {
+      stateKey = 'workExperience';
+      stateValue = workExperience;
+    } else if (type === 'education') {
+      stateKey = 'education';
+      stateValue = education;
+    }
+
+    const updatedData = [...stateValue];
+    updatedData.splice(index, 1);
+
+    if (stateKey === 'personalDetails') {
+      setPersonalDetails(updatedData);
+    } else if (stateKey === 'workExperience') {
+      setWorkExperience(updatedData);
+    } else if (stateKey === 'education') {
+      setEducation(updatedData);
+    }
+  };
+
+  useEffect(() => {
     const textareas = document.getElementsByTagName("textarea");
     for (let i = 0; i < textareas.length; i++) {
-      this.adjustTextareaHeight({ target: textareas[i] });
+      adjustTextareaHeight({ target: textareas[i] });
     }
-  }
+  }, []);
 
-  adjustTextareaHeight = (event) => {
+  const adjustTextareaHeight = (event) => {
     event.target.style.height = "auto";
     event.target.style.height = event.target.scrollHeight + "px";
-  }
-
-  render() {
-    const { personalDetails, workExperience, education } = this.state;
+  };
 
     return (
       <div className="container">
@@ -106,35 +168,35 @@ class FormLogic extends React.Component {
                   name="name"
                   placeholder="Name"
                   value={detail.name}
-                  onChange={(e) => this.handleChange(e, index, 'personalDetails')}
+                  onChange={(e) => handleChange(e, index, 'personalDetails')}
                 />
                 <input
                   type="text"
                   name="title"
                   placeholder="Title"
                   value={detail.title}
-                  onChange={(e) => this.handleChange(e, index, 'personalDetails')}
+                  onChange={(e) => handleChange(e, index, 'personalDetails')}
                 />
                 <input
                   type="text"
                   name="phone"
                   placeholder="Phone"
                   value={detail.phone}
-                  onChange={(e) => this.handleChange(e, index, 'personalDetails')}
+                  onChange={(e) => handleChange(e, index, 'personalDetails')}
                 />
                 <input
                   type="text"
                   name="email"
                   placeholder="Email"
                   value={detail.email}
-                  onChange={(e) => this.handleChange(e, index, 'personalDetails')}
+                  onChange={(e) => handleChange(e, index, 'personalDetails')}
                 />
                 <input
                   type="text"
                   name="location"
                   placeholder="Location"
                   value={detail.location}
-                  onChange={(e) => this.handleChange(e, index, 'personalDetails')}
+                  onChange={(e) => handleChange(e, index, 'personalDetails')}
                 />
                <textarea
                   id="personalDesc"
@@ -142,8 +204,8 @@ class FormLogic extends React.Component {
                   placeholder="Description..."
                   value={detail.personalDesc}
                   onChange={(e) => {
-                    this.handleChange(e, index, 'personalDetails');
-                    this.adjustTextareaHeight(e);
+                    handleChange(e, index, 'personalDetails');
+                    adjustTextareaHeight(e);
                   }}
                   style={{
                     resize: "none",
@@ -164,43 +226,43 @@ class FormLogic extends React.Component {
                   name="company"
                   placeholder="Company"
                   value={experience.company}
-                  onChange={(e) => this.handleChange(e, index, 'workExperience')}
+                  onChange={(e) => handleChange(e, index, 'workExperience')}
                 />
                 <input
                   type="text"
                   name="position"
                   placeholder="Position"
                   value={experience.position}
-                  onChange={(e) => this.handleChange(e, index, 'workExperience')}
+                  onChange={(e) => handleChange(e, index, 'workExperience')}
                 />
                 <input
                   type="text"
                   name="workStart"
                   placeholder="Start Date"
                   value={experience.workStart}
-                  onChange={(e) => this.handleChange(e, index, 'workExperience')}
+                  onChange={(e) => handleChange(e, index, 'workExperience')}
                 />
                 <input
                   type="text"
                   name="workEnd"
                   placeholder="End Date"
                   value={experience.workEnd}
-                  onChange={(e) => this.handleChange(e, index, 'workExperience')}
+                  onChange={(e) => handleChange(e, index, 'workExperience')}
                 />
                 <textarea
-                  ref={textareaRef => this.textareaRef = textareaRef}
+                  ref={textareaRef => textareaRef = textareaRef}
                   id="workDesc"
                   name="workDesc"
                   placeholder="Description..."
                   value={experience.workDesc}
-                  onChange={(e) => this.handleChange(e, index, 'workExperience')}
+                  onChange={(e) => handleChange(e, index, 'workExperience')}
                 />
                 <div className="btnContainer">
-                  <button type="button" id="deleteBtn" onClick={() => this.deleteEntry(index, 'workExperience')}>
+                  <button type="button" id="deleteBtn" onClick={() => deleteEntry(index, 'workExperience')}>
                     Delete
                   </button>
                   {index === workExperience.length - 1 && (
-                    <button type="button" id="addBtn" onClick={() => this.addEntry('workExperience')}>
+                    <button type="button" id="addBtn" onClick={() => addEntry('workExperience')}>
                       Add
                     </button>
                   )}
@@ -218,42 +280,42 @@ class FormLogic extends React.Component {
                   name="course"
                   placeholder="Course / Program"
                   value={edu.course}
-                  onChange={(e) => this.handleChange(e, index, 'education')}
+                  onChange={(e) => handleChange(e, index, 'education')}
                 />
                 <input
                   type="text"
                   name="university"
                   placeholder="University"
                   value={edu.university}
-                  onChange={(e) => this.handleChange(e, index, 'education')}
+                  onChange={(e) => handleChange(e, index, 'education')}
                 />
                 <input
                   type="text"
                   name="eduStart"
                   placeholder="Start Date"
                   value={edu.eduStart}
-                  onChange={(e) => this.handleChange(e, index, 'education')}
+                  onChange={(e) => handleChange(e, index, 'education')}
                 />
                 <input
                   type="text"
                   name="eduEnd"
                   placeholder="End Date"
                   value={edu.eduEnd}
-                  onChange={(e) => this.handleChange(e, index, 'education')}
+                  onChange={(e) =>  handleChange(e, index, 'education')}
                 />
                 <textarea
                 name="eduDesc"
                 id="workDesc"
                 placeholder="Description..."
                 value={edu.eduDesc}
-                onChange={(e) => this.handleChange(e, index, 'education')}
+                onChange={(e) => handleChange(e, index, 'education')}
                 />
               <div className="btnContainer">
-                  <button type="button" id="deleteBtn" onClick={() => this.deleteEntry(index, 'education')}>
+                  <button type="button" id="deleteBtn" onClick={() => deleteEntry(index, 'education')}>
                     Delete
                   </button>
                   {index === education.length - 1 && (
-                    <button type="button" id="addBtn" onClick={() => this.addEntry('education')}>
+                    <button type="button" id="addBtn" onClick={() => addEntry('education')}>
                       Add
                     </button>
                   )}
@@ -275,15 +337,15 @@ class FormLogic extends React.Component {
               </div>
               <div id="rightHeader">
                 <div id="phone">
-                  <img id="phoneImg" src={require("../images/apple.png")} />
+                  <img id="phoneImg" src={require("../images/apple.png")} alt="pindrop icon"/>
                   <p id="productPhone">{detail.phone}</p>
                 </div>
                 <div id="email">
-                  <img id="emailImg" src={require("../images/email.png")} />
+                  <img id="emailImg" src={require("../images/email.png")} alt="envelope icon"/>
                   <p id="productEmail">{detail.email}</p>
                 </div>
                 <div id="location">
-                  <img id="locationImg" src={require("../images/location.png")} />              
+                  <img id="locationImg" src={require("../images/location.png")} alt="pindrop icon" />              
                   <p id="productLocation">{detail.location}</p>
                 </div>
               </div>
@@ -321,7 +383,6 @@ class FormLogic extends React.Component {
         </div>
       </div>
     );
-  }
 }
 
 
